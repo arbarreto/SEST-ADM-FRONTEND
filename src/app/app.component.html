@@ -1,0 +1,120 @@
+<div class="container">
+  <div class="table-wrapper">
+      <div class="table-title">
+          <div class="row">
+              <div class="col-sm-6">
+      <h2>Administrativo</h2>
+    </div>
+    <div class="col-sm-6">
+      <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Adicionar Vídeo</span></a>				
+    </div>
+          </div>
+      </div>
+      <table class="table table-striped table-hover">
+          <thead>
+              <tr>
+                  <th>Título</th>
+                  <th>Descrição</th>
+                  <th>Link</th>
+                  <th>Visualizações</th>
+                  <th>Ações</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let video of videos">
+                  <td>{{video.title}}</td>
+                  <td>{{video.description}}</td>
+                  <td>{{video.link}}</td>
+                  <td>0</td>
+                  <td>
+                      <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar" (click)="setCurrentVideo(video)">&#xE254;</i></a>
+                      <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Apagar" (click)="setDeleteVideoId(video.id)">&#xE872;</i></a>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>
+<!-- Edit Modal HTML -->
+<div id="addEmployeeModal" class="modal fade">
+<div class="modal-dialog">
+<div class="modal-content">
+  <form [formGroup]="add">
+    <div class="modal-header">						
+      <h4 class="modal-title">Adicionar Vídeo</h4>
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    </div>
+    <div class="modal-body">					
+      <div class="form-group">
+        <label>Título</label>
+        <input type="text" class="form-control" formControlName="title" required>
+      </div>
+      <div class="form-group">
+        <label>Descrição</label>
+        <textarea class="form-control" formControlName="description" required></textarea>
+      </div>
+      <div class="form-group">
+        <label>Link</label>
+        <input type="text" class="form-control" formControlName="link" required>
+      </div>					
+    </div>
+    <div class="modal-footer">
+      <input type="button" class="btn btn-default cancelar" data-dismiss="modal" value="Cancelar">
+      <input type="submit" class="btn btn-success sucesso" value="Salvar" (click)="addVideo()">
+    </div>
+  </form>
+</div>
+</div>
+</div>
+<!-- Edit Modal HTML -->
+<div id="editEmployeeModal" class="modal fade">
+<div class="modal-dialog">
+<div class="modal-content">
+  <form [formGroup]="edit">
+    <div class="modal-header">						
+      <h4 class="modal-title">Editar Vídeo</h4>
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    </div>
+    <div class="modal-body">					
+      <div class="form-group">
+        <label>Título</label>
+        <input type="text" class="form-control" formControlName="title" [value]="currentVideo.title" required>
+      </div>
+      <div class="form-group">
+        <label>Descrição</label>
+        <textarea class="form-control" formControlName="description" [value]="currentVideo.description" required></textarea>
+      </div>
+      <div class="form-group">
+        <label>Link</label>
+        <input type="text" class="form-control" formControlName="link" [value]="currentVideo.link" required>
+      </div>					
+    </div>
+    <div class="modal-footer">
+      <input type="button" class="btn btn-default cancelar" data-dismiss="modal" value="Cancelar">
+      <input type="submit" class="btn btn-info sucesso" value="Salvar" (click)="editVideo()">
+    </div>
+  </form>
+</div>
+</div>
+</div>
+<!-- Delete Modal HTML -->
+<div id="deleteEmployeeModal" class="modal fade">
+<div class="modal-dialog">
+<div class="modal-content">
+  <form>
+    <div class="modal-header">						
+      <h4 class="modal-title">Apagar Vídeo</h4>
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    </div>
+    <div class="modal-body">					
+      <p>Você tem certeza que deseja apagar este vídeo?</p>
+      <p class="text-warning"><small>Ele não aparecerá mais na lista.</small></p>
+    </div>
+    <div class="modal-footer">
+      <input type="button" class="btn btn-default cancelar" data-dismiss="modal" value="Cancelar">
+      <input type="submit" class="btn btn-danger sucesso" value="Apagar" (click)="deleteVideo()">
+    </div>
+  </form>
+</div>
+</div>
+</div>
