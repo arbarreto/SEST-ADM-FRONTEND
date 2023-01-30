@@ -59,6 +59,7 @@ export class AppComponent {
       title: (this.edit.value.title) ? this.edit.value.title : this.currentVideo.title,
       description: (this.edit.value.description) ? this.edit.value.description : this.currentVideo.description,
       link: (this.edit.value.link) ? this.edit.value.link : this.currentVideo.link,
+      views: this.currentVideo.views,
     }
 
     this.videoService.editVideo(body, this.currentVideo.id).subscribe((res) => {
